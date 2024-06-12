@@ -73,11 +73,11 @@
             Bpm.Minimum = new decimal(new int[] { 50, 0, 0, 0 });
             Bpm.Name = "Bpm";
             Bpm.Size = new Size(150, 52);
-            Bpm.TabIndex = 2;
+            Bpm.TabIndex = 1;
             Bpm.TextAlign = HorizontalAlignment.Center;
             Bpm.Value = new decimal(new int[] { 100, 0, 0, 0 });
             Bpm.ValueChanged += Bpm_ValueChanged;
-            Bpm.KeyDown += Bpm_KeyDown;
+            Bpm.KeyDown += Window_KeyDown;
             // 
             // label1
             // 
@@ -114,6 +114,7 @@
             MaximizeBox = false;
             Name = "Window";
             Text = "Metronome";
+            KeyDown += Window_KeyDown;
             ((System.ComponentModel.ISupportInitialize)Beat).EndInit();
             ((System.ComponentModel.ISupportInitialize)PlayPause).EndInit();
             ((System.ComponentModel.ISupportInitialize)Bpm).EndInit();

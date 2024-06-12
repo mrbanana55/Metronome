@@ -57,7 +57,7 @@ namespace Metronome
 
         private void Timer_Tick(object sender, EventArgs e)
         {
-            SoundPlayer sound = new SoundPlayer(@"C:\Users\dlega\Desktop\Metronome\Sounds\BeatSound.wav");
+            SoundPlayer sound = new SoundPlayer("Beat.wav");
             sound.Play();
             Beat.Image = Resources.WhiteBeat;
             BeatChanger.Start();
@@ -73,6 +73,35 @@ namespace Metronome
         private void Bpm_ValueChanged(object sender, EventArgs e)
         {
             SetBeatsPerSecond();
+        }
+
+        private void Window_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Space)
+            {
+                if (!play)
+                {
+                    PlayPause.Image = Resources.Play;
+                    play = true;
+                    Timer.Enabled = false;
+                    Beat.Image = Resources.BlackBeat;
+                }
+                else
+                {
+                    SetBeatsPerSecond();
+                    PlayPause.Image = Resources.Pause;
+                    play = false;
+                    Timer.Enabled = true;
+                }
+                // Prevent the beep sound on Enter key press
+                e.Handled = true;
+                e.SuppressKeyPress = true;
+            }
+            else if (e.KeyCode == Keys.Enter)
+            {
+                e.Handled = true;
+                e.SuppressKeyPress = true;
+            }
         }
     }
 }
